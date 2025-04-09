@@ -15,6 +15,7 @@ public class Scenario {
 		IVillage village = new IVillage() {
 			private IEtal[] marche = new IEtal[3];
 			
+			@Override
 			public <P extends Produit> boolean installerVendeur(Etal<P> etal, Gaulois vendeur, P[] produit, int prix) {
 				for(int i = 0; i < marche.length; i++) {
 					if(marche[i] == null) {
@@ -26,6 +27,7 @@ public class Scenario {
 				return false;
 			}
 			
+			@Override
 			public void acheterProduit(String produit, int quantiteSouhaitee) {
 				int quantiteRestante = quantiteSouhaitee;
 				for (int i = 0; i < marche.length && quantiteRestante != 0; i++) {
