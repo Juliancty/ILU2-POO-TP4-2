@@ -1,4 +1,4 @@
-package produit;
+package produits;
 
 
 public enum Unite {
@@ -13,7 +13,7 @@ public enum Unite {
 	}
 	
 	public String toString() {
-		return this.nom;
+		return nom;
 	}
 	
 }

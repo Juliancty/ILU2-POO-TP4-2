@@ -1,4 +1,4 @@
-package produit;
+package produits;
 
 public class Poisson extends Produit {
 	private String datePeche;
@@ -11,6 +11,11 @@ public class Poisson extends Produit {
 	@Override
 	public String decrireProduit() {
 		return getNom() + " pêchés " + datePeche;
+	}
+	
+	@Override
+	public int calculerPrix(int prixFixe) {
+		return prixFixe;
 	}
 	
 }

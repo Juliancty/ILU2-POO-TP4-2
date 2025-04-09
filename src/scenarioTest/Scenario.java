@@ -1,15 +1,68 @@
 package scenarioTest;
 
 import personnages.Gaulois;
+
+
 import produits.Poisson;
+import produits.Produit;
 import produits.Sanglier;
-import villagegaulois.Etal;
+import villagegaulois.*;
 
 public class Scenario {
 
 	public static void main(String[] args) {
 
-		// TODO Partie 4 : creer de la classe anonyme Village
+		IVillage village = new IVillage() {
+			private IEtal[] marche = new IEtal[3];
+			
+			public <P extends Produit> boolean installerVendeur(Etal<P> etal, Gaulois vendeur, P[] produit, int prix) {
+				for(int i = 0; i < marche.length; i++) {
+					if(marche[i] == null) {
+						etal.installerVendeur(vendeur, produit, prix);
+						marche[i] = etal;
+						return true;
+					}
+				}
+				return false;
+			}
+			
+			public void acheterProduit(String produit, int quantiteSouhaitee) {
+				int quantiteRestante = quantiteSouhaitee;
+				for (int i = 0; i < marche.length && quantiteRestante != 0; i++) {
+					IEtal etal = marche[i];
+					int quantiteDisponible = etal.contientProduit(produit, quantiteRestante);
+					if (quantiteDisponible != 0) {
+						int prix = etal.acheterProduit(quantiteDisponible);
+						String chaineProduit = accorderNomProduit(produit, quantiteDisponible);
+						System.out.println("A l'étal n° " + (i + 1) + ", j'achete " + quantiteDisponible + " " + chaineProduit
+								+ " et je paye " + prix + " sous.");
+						quantiteRestante -= quantiteDisponible;
+					}
+				}
+				String chaineProduit = accorderNomProduit(produit, quantiteSouhaitee);
+				System.out.println("Je voulais " + quantiteSouhaitee + " " + chaineProduit + ", j'en ai acheté "
+						+ (quantiteSouhaitee - quantiteRestante) + ".\n");
+			}
+			
+			private static String accorderNomProduit(String produit, int quantiteSouhaitee) {
+				String chaineProduit = produit;
+				if (quantiteSouhaitee > 1) {
+					chaineProduit = produit + "s";
+				}
+				return chaineProduit;
+			}
+			
+			@Override
+			public String toString() {
+				StringBuilder chaine = new StringBuilder();
+				for(int i = 0; i < marche.length; i++) {
+					if(marche[i] != null) {
+						chaine.append(marche[i].etatEtal() + "\n");
+					}
+				}
+				return chaine.toString();
+			}
+		};
 
 		// fin
 

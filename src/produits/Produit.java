@@ -1,6 +1,6 @@
-package produit;
+package produits;
 
-public abstract class Produit {
+public abstract class Produit implements IProduit {
 	private String nom;
 	protected Unite unite;
 	
@@ -9,11 +9,11 @@ public abstract class Produit {
 		this.unite = unite;
 	}
 
+	@Override
 	public String getNom() {
 		return nom;
 	}
 	
-	public abstract String decrireProduit();
 	
 
 }

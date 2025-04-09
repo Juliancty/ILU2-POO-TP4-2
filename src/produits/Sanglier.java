@@ -1,4 +1,4 @@
-package produit;
+package produits;
 
 import personnages.Gaulois;
 
@@ -15,5 +15,10 @@ public class Sanglier extends Produit {
 	@Override
 	public String decrireProduit() {
 		return getNom() + " de " + this.poids + unite.toString() + " chassé par " + chasseur.getNom();
+	}
+	
+	@Override
+	public int calculerPrix(int prixFixe) {
+		return prixFixe;
 	}
 }
