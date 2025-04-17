@@ -63,15 +63,17 @@ public class ScenarioTest {
 		etalPoisson1.installerVendeur(ordralfabetix, poissons, 7);
 		
 		for(int i = 0; i < marche.length; i++) {
-			System.out.println(marche[i].etatEtal());
+			if(marche[i] != null) {
+				System.out.println(marche[i].etatEtal());
+			}
 		}
-
-		String produitSouhaite = "sanglier";
-		int quantiteSouhaitee = 3;
-		acheterProduit(marche, produitSouhaite, quantiteSouhaitee);
+		
+		acheterProduit(marche, "sanglier", 3);
 		
 		for(int i = 0; i < marche.length; i++) {
-			System.out.println(marche[i].etatEtal());
+			if(marche[i] != null) {
+				System.out.println(marche[i].etatEtal());
+			}
 		}
 	}
 

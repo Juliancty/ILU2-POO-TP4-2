@@ -12,6 +12,7 @@ public enum Unite {
 		this.nom = nom;
 	}
 	
+	@Override
 	public String toString() {
 		return nom;
 	}

@@ -13,9 +13,4 @@ public class Poisson extends Produit {
 		return getNom() + " pêchés " + datePeche;
 	}
 	
-	@Override
-	public int calculerPrix(int prixFixe) {
-		return prixFixe;
-	}
-	
 }
